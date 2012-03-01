@@ -18,7 +18,7 @@ class sendmail (
     if $sendmail_mc_template != undef {
         file { "/etc/mail/sendmail.mc":
             mode    => 644,
-            content => $sendmail_mc_template,
+            content => template($sendmail_mc_template),
             notify  => Exec['sendmail-make-config'],
         }
     }
@@ -26,7 +26,7 @@ class sendmail (
     if $submit_mc_template != undef {
         file { "/etc/mail/submit.mc":
             mode    => 644,
-            content => $submit_mc_template,
+            content => template($submit_mc_template),
             notify  => Exec['sendmail-make-config'],
         }
     }
